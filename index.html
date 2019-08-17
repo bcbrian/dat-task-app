@@ -1,0 +1,100 @@
+<!-- TASK APP -->
+<!-- 1. Enter a task -- DONE --> 
+<!-- 2. Show list of taks -- DONE -->
+<!-- 3. Mark them as done -- DONE -->
+<!-- 4. Remove ones that we want -- DONE -->
+<!-- 5. Utilize local storage to persist list on revisit -->
+
+<style>
+  div {
+    background-color: rebeccapurple;
+    color: white;
+    margin: 12px;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  input {
+    border-radius: 4px;
+    border: none;
+    padding: 8px;
+    margin-right: 8px;
+  }
+
+  button {
+    height: 36px;
+    border-radius: 18px;
+    border: 2px solid white;
+    background: rebeccapurple;
+    color: white;
+    padding: 0 18px;
+    text-transform: uppercase;
+    letter-spacing: 1.5;
+  }
+
+  .container {
+    background-color: aqua;
+    color: black;
+    font-size: 12px;
+  }
+
+  .task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .task-completed span {
+    text-decoration: line-through;
+  }
+
+  .task button {
+    text-transform: uppercase;
+    letter-spacing: 1.5;
+  }
+</style>
+
+<div>
+  Dat Task
+</div>
+<div>
+  <input id="new-task-input" />
+  <button id="cloacking-ocean-button">
+    Wats Gud
+  </button>
+</div>
+<div id="task-container" class="container"></div>
+
+<script>
+  function handleAddTask(){
+    // get input value for the new task
+    const newTaskInputValue = document.getElementById("new-task-input").value;
+    // create a task element
+    const newTaskEl = document.createElement("div");
+    // add class task to the element
+    newTaskEl.classList.add("task");
+    // add span for the text and styling cuz 
+    // https://stackoverflow.com/questions/1823341/how-do-i-get-this-css-text-decoration-override-to-work
+    const MdsmithsonSpan = document.createElement("span");
+    MdsmithsonSpan.innerHTML = newTaskInputValue;
+    newTaskEl.append(MdsmithsonSpan);
+    // add button to dismiss it
+    const MdsmithsonBtn = document.createElement("button");
+    MdsmithsonBtn.innerHTML = "TRASH";
+    newTaskEl.append(MdsmithsonBtn);
+    // add the task element to the dom
+    document.getElementById("task-container").append(newTaskEl);
+    // add event listeners to the task to toggle complete
+    newTaskEl.addEventListener("click", function(event) {
+      event.target.classList.toggle("task-completed");
+    });
+    // add event to the trash button to trash task we no longer want
+    MdsmithsonBtn.addEventListener("click", function(event) {
+      event.target.parentElement.remove();
+    });
+  }
+  document
+    .getElementById("cloacking-ocean-button")
+    .addEventListener("click", handleAddTask);
+</script>
