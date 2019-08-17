@@ -89,6 +89,9 @@
     newTaskEl.addEventListener("click", function(event) {
       event.target.classList.toggle("task-completed");
     });
+    MdsmithsonSpan.addEventListener("click", function(event) {
+      event.target.parentElement.classList.toggle("task-completed");
+    });
     // add event to the trash button to trash task we no longer want
     MdsmithsonBtn.addEventListener("click", function(event) {
       event.target.parentElement.remove();
